@@ -32,10 +32,25 @@ public class App {
         gb.insertChar('m');
         gb.insertChar('y');
         gb.insertChar(' ');
-        gb.moveGapTo(24);
+        gb.moveGapTo(25);
         gb.insertChar('?');
         gb.insertChar('!');
         gb.insertChar('?');
+        gb.insertChar(' ');
+        gb.insertChar('H');
+        gb.insertChar('e');
+        gb.insertChar('l');
+        gb.insertChar('l');
+        gb.insertChar('o');
+        gb.insertChar(' ');
+        gb.insertChar(' ');
+        gb.insertChar('H');
+        gb.insertChar('e');
+        gb.insertChar('l');
+        gb.insertChar('l');
+        gb.insertChar('o');
+        gb.insertChar(' ');
+        gb.moveGapTo(14);
         System.out.println(gb);
     }
 
