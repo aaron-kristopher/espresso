@@ -160,4 +160,14 @@ public class GapBuffer {
 
         return sb.toString();
     }
+
+    /**
+     * Removes all contents within the buffer by resetting pointer indices to the start and
+     * end of the entire buffer. Buffer array will still hold the values but the buffer will
+     * disregard those values, logically emptying the buffer in constant time.
+     */
+    public void clearBuffer() {
+        this.start = 0;
+        this. end = this.buffer.length;
+    }
 }
