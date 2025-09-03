@@ -1,7 +1,5 @@
 package com.serendipity.buffer;
 
-import java.util.Arrays;
-
 /**
  * This is the main Gap Buffer class that will hold the text of the editor.
  *
@@ -52,7 +50,7 @@ public class GapBuffer {
      * It will automatically expand to twice the size if the buffer is
      * already full, calling the resize method.
      *
-     * @parama c Character to append to the buffer
+     * @param c Character to append to the buffer
      */
     public void insertChar(char c) {
 
@@ -102,14 +100,13 @@ public class GapBuffer {
         }
     }
 
-    // Doulbes the current size of the buffer and maitains gap position within the buffer
+    // Doubles the current size of the buffer and maitains gap position within the buffer
     private void resize() {
         int newSize = this.buffer.length * 2;
         char[] newBuffer = new char[newSize];
 
         int leftSize = this.start;
         int rightSize = this.buffer.length - this.end;
-        int gapSize = newSize - (leftSize + rightSize);
 
         System.arraycopy(this.buffer, 0, newBuffer, 0, leftSize);
         System.arraycopy(this.buffer, this.end, newBuffer, newSize - rightSize, rightSize);
@@ -120,12 +117,16 @@ public class GapBuffer {
         this.buffer = newBuffer;
     }
 
-    // Removes character to the left of the cursor
+    /**
+     * Removes character to the left of the cursor.
+     */
     public void backspace() {
         removeInternal(true);
     }
 
-    // Removes character to the right of the cursor
+    /**
+     * Removes character to the right of the cursor.
+     */
     public void delete() {
         removeInternal(false);
 
