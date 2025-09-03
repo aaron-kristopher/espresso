@@ -45,15 +45,21 @@ public class GapBufferTest {
     }
 
     @Test
+    public void testInsertString() {
+        GapBuffer buffer = new GapBuffer(8);
+        buffer.insertString("******");
+
+        assertEquals("******", buffer.getText());
+    }
+
+    @Test
     public void testClearBuffer() {
         GapBuffer buffer = new GapBuffer(8);
 
-        String input = "******";
-        for (char c : input.toCharArray()) {
-            buffer.insertChar(c);
-        }
-
+        buffer.insertString("******");
         buffer.clearBuffer();
+
         assertEquals("", buffer.getText());
     }
+
 }
