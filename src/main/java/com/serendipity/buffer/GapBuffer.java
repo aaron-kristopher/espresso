@@ -148,7 +148,7 @@ public class GapBuffer {
     }
 
     /**
-     * This returns the buffer content without the gap. This method disregards the values
+     * Returns the buffer content without the gap. This method disregards the values
      * within the gap start and end and provides only relevant text content.
      * 
      * @return sb The stringified buffer content excluding characters within the gap
@@ -169,5 +169,14 @@ public class GapBuffer {
     public void clearBuffer() {
         this.start = 0;
         this. end = this.buffer.length;
+    }
+
+    /**
+     * Returns how long the contents of the buffer is, regardless of the gap size.
+     *
+     * @return length Integer representation of the buffer content length
+     */
+    public int length() {
+        return this.start + (this.buffer.length - this.end);
     }
 }
