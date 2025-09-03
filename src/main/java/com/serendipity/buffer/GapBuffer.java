@@ -2,6 +2,11 @@ package com.serendipity.buffer;
 
 import java.util.Arrays;
 
+/**
+ * This is the main Gap Buffer class that will hold the text of the editor.
+ *
+ * @author Aaron
+ */
 public class GapBuffer {
 
     private int start;
@@ -19,22 +24,38 @@ public class GapBuffer {
         this(1024);
     }
 
+    /**
+     * Provide a visual representation of the current buffer which
+     * includes the current position and length of the gap.
+     */
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
 
         for (int i = 0; i < this.buffer.length; i++) {
-            if (this.start <= i && i < this.end) {
+
+            // Underscore will help visualize the gap inside the buffer
+            if (this.start <= i && i < this.end)
                 sb.append('_');
-            } else {
+                
+            // Show the character
+            else
                 sb.append(this.buffer[i]);
-            }
         }
 
         return sb.toString();
     }
 
+
+    /**
+     * Appends the character at the of beginning of the Gap Buffer.
+     * It will automatically expand to twice the size if the buffer is
+     * already full, calling the resize method.
+     *
+     * @parama c Character to append to the buffer
+     */
     public void insertChar(char c) {
+
         // Grow gapBuffer size if buffer there is no more buffer
         if (this.start == this.end)
             this.resize();
@@ -42,6 +63,12 @@ public class GapBuffer {
         this.buffer[this.start++] = c;
     }
 
+    /**
+     * Calling this method slides the gap to the cursor position within the buffer
+     * to ensure correct insertion placement of characters.
+     *
+     * @param cursor Index position of the cursor where the gap should be moved to
+     */
     public void moveGapTo(int cursor) {
 
         if (cursor < this.start) {
@@ -55,18 +82,27 @@ public class GapBuffer {
         }
     }
 
+    // Design implementation of moving gap to desired direction
     private void shiftGapToLeft(int cursor, int length) {
+        
+        // Length indicates number of steps to take until start pointer is on cursor position.
+        // Buffer slowly moves to the left.
         while (length-- > 0) {
             this.buffer[--this.end] = this.buffer[--this.start];
         }
     }
 
+    // Design implementation of moving gap to desired direction
     private void shiftGapToRight(int cursor, int length) {
+
+        // Length indicates number of steps to take until start pointer is on cursor position.
+        // Buffer slowly moves to the right.
         while (length-- > 0) {
             this.buffer[this.start++] = this.buffer[this.end++];
         }
     }
 
+    // Doulbes the current size of the buffer and maitains gap position within the buffer
     private void resize() {
         int newSize = this.buffer.length * 2;
         char[] newBuffer = new char[newSize];
@@ -84,4 +120,14 @@ public class GapBuffer {
         this.buffer = newBuffer;
     }
 
+    // Removes character to the left of the cursor
+    public void backspace() {
+        removeInternal(true);
+    }
+
+    // Removes character to the right of the cursor
+    public void delete() {
+        removeInternal(false);
+
+    }
 }
