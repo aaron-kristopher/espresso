@@ -179,4 +179,16 @@ public class GapBuffer {
     public int length() {
         return this.start + (this.buffer.length - this.end);
     }
+
+    /**
+     * Inserts an entire string to the buffer. This method is useful for pasting
+     * text into the editor.
+     *
+     * @param text The input string to be inserted in the buffer
+     */
+    public void insertString(String text) {
+        for (char c : text.toCharArray()) {
+            this.insertChar(c);
+        }
+    }
 }
