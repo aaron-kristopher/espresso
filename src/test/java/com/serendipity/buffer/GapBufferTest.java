@@ -43,4 +43,17 @@ public class GapBufferTest {
         buffer.delete();
         assertEquals("hello", buffer.getText());
     }
+
+    @Test
+    public void testClearBuffer() {
+        GapBuffer buffer = new GapBuffer(8);
+
+        String input = "******";
+        for (char c : input.toCharArray()) {
+            buffer.insertChar(c);
+        }
+
+        buffer.clearBuffer();
+        assertEquals("", buffer.getText());
+    }
 }
