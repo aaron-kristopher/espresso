@@ -130,4 +130,34 @@ public class GapBuffer {
         removeInternal(false);
 
     }
+
+    /**
+     * Removes the character on either left or right of the cursor.
+     *
+     * @param left Indicates whether the left character should be removed. A false value
+     * would indicate removal of the character on the right hand side of the cursor
+     */
+    private void removeInternal(boolean left) {
+        if (left)
+            // Ensure start pointer does not reach negative
+            this.start = Math.max(this.start - 1, 0);
+
+        else
+            // Ensure end pointer does not exceed buffer size
+            this.end = Math.min(this.end + 1, this.buffer.length);
+    }
+
+    /**
+     * This returns the buffer content without the gap. This method disregards the values
+     * within the gap start and end and provides only relevant text content.
+     * 
+     * @return sb The stringified buffer content excluding characters within the gap
+     */
+    public String getText() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(buffer, 0, this.start);
+        sb.append(buffer, this.end, this.buffer.length - this.end);
+
+        return sb.toString();
+    }
 }
