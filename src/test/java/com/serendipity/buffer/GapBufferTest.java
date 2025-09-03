@@ -62,4 +62,10 @@ public class GapBufferTest {
         assertEquals("", buffer.getText());
     }
 
+    @Test
+    public void testLength() {
+        GapBuffer buffer = new GapBuffer(10);
+        buffer.insertString("test");
+        assertEquals(4, buffer.length());
+    }
 }
