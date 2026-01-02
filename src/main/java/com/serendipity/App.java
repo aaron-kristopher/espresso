@@ -9,14 +9,12 @@ import com.googlecode.lanterna.*;
 
 import java.io.*;
 
-<<<<<<< HEAD
 public class App {
 =======
 import com.serendipity.buffer.GapBuffer;
 
 public class App {
 
->>>>>>> feat/gap-buffer
     public static void main(String[] args) {
         Terminal terminal = null;
 
@@ -33,11 +31,6 @@ public class App {
             StringBuffer content = new StringBuffer();
 
             while (keyStroke.getKeyType() != KeyType.Escape) {
-<<<<<<< HEAD
-                
-=======
-
->>>>>>> feat/gap-buffer
                 switch (keyStroke.getKeyType()) {
                     case ArrowUp:
                         cursorY = Math.max(cursorY - 1, 0);
